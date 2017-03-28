@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+
+# Custom
+.idea/
+*.wav
+pynaoqi-python2.7-2.1.2.17-linux64/
