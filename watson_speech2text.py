@@ -3,18 +3,19 @@ from os.path import join, dirname
 
 
 class Watson_Speech2Text:
-    def __init__(self, username, password, learning=False):
+    def __init__(self, username, password, learning=False, model=None):
         self.speech_to_text = SpeechToTextV1(
                 username=username,
                 password=password,
                 x_watson_learning_opt_out=learning
         )
+        self.model = model
 
     def recognize(self, audiofile, type):
         with open(join(dirname(__file__), audiofile),
                   'rb') as audio_file:
             result = self.speech_to_text.recognize(
-                    audio_file, content_type=type)["results"][0]["alternatives"][0]["transcript"]
+                    audio_file, content_type=type, model=self.model)["results"][0]["alternatives"][0]["transcript"]
 
             print(result)
             return result
