@@ -22,10 +22,14 @@ class Watson_Conversation:
         return unicodedata.normalize('NFKD', "".join(response["output"]["text"])).encode('ascii','ignore')
 
 
-watson_conversation = Watson_Conversation('6432cebe-14b4-4f93-8e73-12ccdb5891c2',
-                                          'ccaNRkHB1Uqt', '2016-09-20',
+watson_conversation = Watson_Conversation('6734af95-6ca0-4d72-b80b-6c3b578c16bf',
+                                          'CqsrM7IrxeCZ', '2016-09-20',
                                           '21d88c8e-c0e8-48cb-bffb-61524417ae38')
 
 # watson_conversation.message("hello")
 #
 # print(watson_conversation.message("turn on my lights"))
+
+#"username": "6734af95-6ca0-4d72-b80b-6c3b578c16bf",
+#  "password": "CqsrM7IrxeCZ"
+#6432cebe-14b4-4f93-8e73-12ccdb5891c2, ccaNRkHB1Uqt
