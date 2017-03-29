@@ -15,9 +15,9 @@ class Tutor():
 
         self.filename = "record.wav"
 
-        self.conversation = Watson_Conversation('6432cebe-14b4-4f93-8e73-12ccdb5891c2',
-                                                'ccaNRkHB1Uqt', '2016-09-20',
-                                                '21d88c8e-c0e8-48cb-bffb-61524417ae38')
+        self.conversation = Watson_Conversation('6734af95-6ca0-4d72-b80b-6c3b578c16bf',
+                                                'CqsrM7IrxeCZ', '2016-09-20',
+                                                '41c2898c-cc6a-49f6-82dc-bfc51c201a33')
 
         self.speech2text = Watson_Speech2Text('5a43e79e-b9de-4b8b-9df2-bfaead00aaa6', '86WTJ13jYssQ')
 
@@ -46,3 +46,7 @@ class Tutor():
 
 tutor = Tutor()
 tutor.startConversation()
+
+
+#anteriores: '6432cebe-14b4-4f93-8e73-12ccdb5891c2','ccaNRkHB1Uqt', 21d88c8e-c0e8-48cb-bffb-61524417ae38
+#
