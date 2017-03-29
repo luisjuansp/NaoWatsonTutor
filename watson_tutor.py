@@ -5,7 +5,7 @@ from naoproxy import NaoProxy
 
 class Tutor():
     def __init__(self):
-        IP = "192.168.0.104"
+        IP = "192.168.0.100"
         # broker = ALBroker("myBroker", "0.0.0.0", 0, IP, 9559)
 
         global nao
@@ -19,7 +19,7 @@ class Tutor():
                                                 'CqsrM7IrxeCZ', '2016-09-20',
                                                 '41c2898c-cc6a-49f6-82dc-bfc51c201a33')
 
-        self.speech2text = Watson_Speech2Text('5a43e79e-b9de-4b8b-9df2-bfaead00aaa6', '86WTJ13jYssQ')
+        self.speech2text = Watson_Speech2Text('5a43e79e-b9de-4b8b-9df2-bfaead00aaa6', '86WTJ13jYssQ', model='es-ES_BroadbandModel')
 
         response = self.conversation.message("hello")
 
