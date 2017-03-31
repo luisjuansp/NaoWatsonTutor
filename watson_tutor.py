@@ -5,15 +5,19 @@ from naoproxy import NaoProxy
 
 class Tutor():
     def __init__(self):
-        IP = "192.168.0.100"
         # broker = ALBroker("myBroker", "0.0.0.0", 0, IP, 9559)
-
+        IP = "192.168.0.100"
         global nao
         nao = NaoProxy(IP, "nao")
 
         self.nao = nao
 
         self.filename = "record.wav"
+
+        self.picturepath = "/home/nao/"
+        self.picturename = "picture.png"
+
+        self.nao.takePicture(self.picturepath, self.picturename)
 
         self.conversation = Watson_Conversation('6734af95-6ca0-4d72-b80b-6c3b578c16bf',
                                                 'CqsrM7IrxeCZ', '2016-09-20',

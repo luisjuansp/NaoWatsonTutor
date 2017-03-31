@@ -22,7 +22,7 @@ class NaoProxy(ALModule):
             IP: The IP of the robot that will be connected.
         """
         self.broker = ALBroker("myBroker", "0.0.0.0", 0, IP, 9559)
-        
+
         self.module = module
 
         # Initiate parent class
@@ -37,8 +37,11 @@ class NaoProxy(ALModule):
         self.postureProxy = ALProxy("ALRobotPosture")
         self.motionProxy = ALProxy("ALMotion")
         self.record = ALProxy("ALAudioRecorder", IP, 9559)
+        self.photo = ALProxy("ALPhotoCapture", IP, 9559)
         self.sensor = ALProxy("ALTouch")
 
+        self.photo.setResolution(2)
+        self.photo.setPictureFormat("png")
 
         # Setup to be able to detect touched sensors
         self.touchedSensors = []
@@ -110,8 +113,7 @@ class NaoProxy(ALModule):
         if value:
             print("right")
             self.recordCallback(False)
-        # self.memory.subscribeToEvent("RightBumperPressed", self.module, "RightBumperTouched")
-
+            # self.memory.subscribeToEvent("RightBumperPressed", self.module, "RightBumperTouched")
 
     def FrontTactilTouched(self, eventName, value, subsId):
         # self.memory.unsubscribeToEvent("FrontTactilTouched", self.module)
@@ -119,8 +121,7 @@ class NaoProxy(ALModule):
         if value:
             print("front")
             self.recordCallback(self.sensor.getStatus())
-        # self.memory.subscribeToEvent("FrontTactilTouched", self.module, "FrontTactilTouched")
-
+            # self.memory.subscribeToEvent("FrontTactilTouched", self.module, "FrontTactilTouched")
 
     def recognizeWord(self, vocabulary):
         """ Waits for a word to be recognized and returns it.
@@ -230,7 +231,6 @@ class NaoProxy(ALModule):
         self.ftp.login("nao", "nao")
         self.ftp.retrbinary('RETR %s' % filename, file.write)
 
-
     def startRecordAudio(self, filename):
         # ----------> recording <----------
         print 'start recording...'
@@ -252,3 +252,13 @@ class NaoProxy(ALModule):
 
     def getFrontHeadStatus(self):
         return self.sensor.getStatus()[7][1]
+
+    def takePicture(self, folderpath, filename):
+        print(self.sensor.getStatus())
+        filepath = self.photo.takePicture(folderpath, filename)[0]
+
+        file = open(filename, 'wb')
+
+        self.ftp.login("nao", "nao")
+        self.ftp.retrbinary('RETR %s' % filename, file.write)
+        return filepath
